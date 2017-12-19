@@ -762,7 +762,7 @@ console.log(s);
 console.log();
 console.log(s1);
 console.log();
-console.log(`第二个参数用于控制如何筛选对象的键值，如果我们只想输出指定的属性，可以传入Array`);
+console.log(`第二个参数(可以传入函数)用于控制如何筛选对象的键值，如果我们只想输出指定的属性，可以传入Array`);
 console.log(s2);
 
 function convert(key, value){
@@ -774,8 +774,58 @@ function convert(key, value){
 var s3 = JSON.stringify(xiaoming, convert, '    ');
 console.log(s3);
 
+console.log();
+console.log('---------------   如果我们还想要精确控制如何序列化小明，可以给xiaoming定义一个toJSON()的方法，直接返回JSON应该序列化的数据  ---------------');
+var xiaoming = {
+    name: '小明',
+    age: 14,
+    gender: true,
+    height: 1.65,
+    grade: null,
+    'middle-school': '\"W3C\" Middle School',
+    skills: ['JavaScript', 'Java', 'Python', 'Lisp'],
+    toJSON: function () {
+        return { // 只输出name和age，并且改变了key：
+            'Name': this.name,
+            'Age': this.age
+        };
+    }
+};
+console.log(JSON.stringify(xiaoming));
 
+console.log();
+console.log('---------------   反序列化:JSON.parse()  ---------------');
+var xiaomingStr = `
+{
+    "name": "小明",
+    "age": 14,
+    "gender": true,
+    "height": 1.65,
+    "grade": null,
+    "middle-school": "\'W3C\' Middle School",
+    "skills": [
+        "JavaScript",
+        "Java",
+        "Python",
+        "Lisp"
+    ]
+}`;
+console.log(JSON.parse(xiaomingStr));
+console.log(JSON.parse(123));
+console.log(JSON.parse('333'));
+console.log(JSON.parse('true'));
+console.log(JSON.parse('{"name": "小明", "age": 4}'));
+console.log(JSON.parse('[1, 2, true]'));
 
+console.log();
+console.log('---------------   JSON.parse():还可以接收一个函数，用来转换解析出的属性  ---------------');
+var obj = JSON.parse('{"name":"小明","age":14}', function (key, value) {
+    if (key === 'name') {
+        return value + '同学';
+    }
+    return value;
+});
+console.log(JSON.stringify(obj)); // {name: '小明同学', age: 14}
 
 
 
