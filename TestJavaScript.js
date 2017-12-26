@@ -45,13 +45,17 @@ console.log();
 console.log('---------------   数组  ---------------');
 var arr = [1, 2, 3, 'hello', null, true];
 console.log(arr[3]);
-console.log('arr.indexOf可以搜索指定的元素：' + arr.indexOf('hello'));
+console.log('arr.indexOf可以搜索指定的元素：' + arr.indexOf('hello') + `___` + arr.indexOf('helloooo'));
 console.log(arr.slice(2,4));
 console.log('arr的push和pop对末尾进行操作');
 console.log('arr的unshift和shift对首元素进行操作');
 console.log('arr的reverse反序:' + arr.reverse());
+console.log('arr的reverse反序:' + arr);
 arr.reverse();
-console.log('arr的splice删除元素后添加，再返回删除的元素：\narr：' + arr + '\narr.splice(1, 2, \'b\', \'c\', \'d\')返回的:' + arr.splice(1, 2, 'b', 'c', 'd') + '\n现在的arr：' + arr);
+console.log(`arr的splice删除元素后添加，再返回删除的元素：
+arr：` + arr + 
+`\narr.splice(1, 2, \'b\', \'c\', \'d\')返回的:` + arr.splice(1, 2, 'b', 'c', 'd') + 
+`\n现在的arr：` + arr);
 console.log('arr的join，将每个元素用指定的符号连接起来：' + arr.join('-'));
 
 
