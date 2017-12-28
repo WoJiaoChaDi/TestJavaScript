@@ -211,7 +211,7 @@ mySet.forEach(function(element, sameElement, set){
 
 
 console.log();
-console.log('---------------   函数  ---------------');
+console.log('---------------   函数：arguments参数，每一个入参  ---------------');
 var myCons = function(x){
 	console.log('这是个myCons函数！');
 	console.log('x的参数为：' + x);
@@ -226,7 +226,7 @@ myCons(1, 2, 3, 4);
 
 
 console.log();
-console.log('***ES6***---------------   函数：rest参数  ---------------');
+console.log('***ES6***---------------   函数：rest参数，定义外的入参  ---------------');
 var myCons2 = function(a, b, ...rest){
 	console.log('a=' + a);
 	console.log('b=' + b);
@@ -297,6 +297,15 @@ console.log(f);
 console.log(g);
 console.log(h);
 
+
+var person = {
+	name: 'Bob',
+	age: 20,
+	tags: ['js', 'web', 'mobile'],
+	city: 'beijing',
+	hasCar: true,
+	zipcode: null
+};
 console.log();
 console.log('---对象---');
 console.log(person);
@@ -328,6 +337,7 @@ console.log('y:' + y);
 // console.log(path);
 
 console.log();
+console.log('用解构赋值创建方法：');
 function buildDate({year, month, day, hour=2, minute=22, second=23}){
 	return new Date(year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second);
 }
@@ -382,6 +392,21 @@ var xiaoming2 = {
 console.log(xiaoming2.age());
 console.log(getAge());
 console.log(getAge.apply(xiaoming2, []));
+
+console.log();
+console.log('---------------   方法：apply继承对象的属性  ---------------');
+function Person(name,age) {   
+    this.name=name; this.age=age;   
+}   
+ /*定义一个学生类*/   
+function Student(name,age,grade) {   
+    Person.apply(this,arguments); 
+    this.grade=grade;   
+}   
+
+var student = new Student('111', 222, '333');
+console.log(student)
+
 
 console.log();
 console.log('---------------   方法：call()：与apply()相比，apply()是把参数打包成Array再传入；call()把参数按顺序传入。  ---------------');
