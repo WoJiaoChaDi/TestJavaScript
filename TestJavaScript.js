@@ -611,7 +611,8 @@ console.log('如果参数不是一个，要用括号括起来');
 }
 console.log();
 console.log('如果返回一个对象，要用()括起来');
-x => {foo: x};
+var x1 = x => ({name: 'Jack'});
+console.log(x1().name);
 
 console.log();
 console.log('箭头函数修复了this指向，this总是指向词法作用域，也就是外层调用者');
